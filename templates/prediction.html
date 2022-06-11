@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+    <title>Transport Vision Demo</title>
+    
+	<style type='text/css'>
+		td {
+			vertical-align:top;
+		} 
+	</style>
+</head>
+<body> 
+	<div class="title">
+	  <h1>Transport Vision</h1>
+	  <h2>Image semantic segmentation</h2>
+	  <h3>Flask demo application deployed on Microsoft Azure</h3>
+	  <hr>
+	</div> 
+	<table>
+		<tbody>
+			<tr>
+				<td>
+					<b>Original file</b>:<br/><img src="{{original_image_path}}" width="900"/>
+				</td>
+				<td style="vertical-align:bottom;">
+					<img src="{{legend_image_path}}" width="400"/>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<b>Ground Truth labels</b>:<br/><img src="{{label_image_path}}" width="900"/>
+				</td>
+				<td>
+					<b>Model prediction</b>:<br/><img src="{{prediction_image_path}}" width="900"/>
+				</td> 
+			</tr>
+		</tbody>
+	</table> 
+       
+       <hr/>
+       <h1><a href="/" title="back to selector">back to index</a></h1>
+       <img src="{{ url_for('static', filename='future_vision_transport.png') }}" height="256" width="512"/>
+
+</body>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}">
+    <title>Transport Vision Demo</title>
+</head>
+<body> 
+	<div class="title">
+	  <h1>Transport Vision</h1>
+	  <h2>Image semantic segmentation</h2>
+	  <h3>Flask demo application deployed on Microsoft Azure</h3>
+	  <hr>
+	</div> 
+   
+       <form action="/prediction" method="post">
+            <label for="file_select"><h3>Choose a street image in the list below</h3></label>
+            
+            <select name="file" id="file_select">
+                {% for file in original_images %}
+                <option value= "{{file}}">{{file}}</option>
+                {% endfor %}
+            </select>
+	  <div id="preview">
+       <script type="text/javascript">
+	var file_selector = document.getElementById("file_select");
+	var img_filename=file_selector.value;
+	var preview_img  = document.createElement("img");
+	preview_img.width="500";
+	preview_img.src = "/static/original/"+img_filename;
+	document.getElementById("preview").appendChild(preview_img);
+	file_selector.onchange = function() {
+		img_filename=file_selector.value;
+		preview_img.src = "/static/original/"+img_filename;
+	};
+       </script>
+       </div>
+       <label for="file_select_button"><h3>Now send the image to our semantic segmentation model</h3></label>
+            <input type="submit" id="file_select_button" value="Process inference" align="right"/>
+        </form>
+        
+       <br/>
+       
+       <hr/>
+       <img src="{{ url_for('static', filename='future_vision_transport.png') }}" height="256" width="512"/>
+
+</body>
