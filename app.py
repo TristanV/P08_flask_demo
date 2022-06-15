@@ -75,6 +75,7 @@ def prediction():
     # fetch the selected file in the POST request data
     file = request.form['file']
     original_image_path = str('./static/original/'+ file) 
+    print("submitting inference job with image : "+original_image_path)
     original_img = cv2.imread(f'{original_image_path}')
 
     # 2 ---------------------------------------------------------------------
@@ -166,7 +167,7 @@ def prediction():
 
     for c in range(NB_CLASSES):
         seg_arr_c = pr[:, :] == c  
-        print("class=",c,seg_arr_c)
+        # print("class=",c,seg_arr_c)
         seg_img[:, :, 0] += ((seg_arr_c)*(colors[c][0])).astype('uint8')
         seg_img[:, :, 1] += ((seg_arr_c)*(colors[c][1])).astype('uint8')
         seg_img[:, :, 2] += ((seg_arr_c)*(colors[c][2])).astype('uint8')
